@@ -1,19 +1,23 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using MyApp.Data;
 using MyApp.Models;
 
 namespace MyApp.Controllers
 {
     public class ItemsController : Controller
     {
-        public IActionResult Overview()
+        private readonly MyAppContext _context;
+
+        public ItemsController(MyAppContext context)
         {
-            var item = new Item() { Name = "Keyboard" };
-            return View(item);
+            _context = context;
         }
 
-        public IActionResult Edit(int itemId)
+        public async Task<IActionResult> Index()
         {
-            return Content("id: " + itemId);
+            var item = await _context.Items.ToListAsync();
+            return View(item);
         }
     }
 }
