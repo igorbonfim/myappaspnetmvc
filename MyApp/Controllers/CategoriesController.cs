@@ -26,6 +26,7 @@ namespace MyApp.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id, Name")] Category category)
         {
             if (ModelState.IsValid)
@@ -44,6 +45,7 @@ namespace MyApp.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("Id, Name")] Category category)
         {
             if (ModelState.IsValid)
@@ -62,6 +64,7 @@ namespace MyApp.Controllers
         }
 
         [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var category = await _context.Categories.FindAsync(id);

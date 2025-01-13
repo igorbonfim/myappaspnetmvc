@@ -8,6 +8,7 @@
 
 <div class="row col-md-8">
     <form asp-action="Edit" method="post">
+        <div asp-validation-summary="All" class="text-danger"></div>
         <div class="form-group mb-3">
             <label for="Name">Name</label>
             <input type="text" class="form-control" asp-for="Name" />

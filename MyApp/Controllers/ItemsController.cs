@@ -32,8 +32,10 @@ namespace MyApp.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id, Name, Price, CategoryId")] Item item)
         {
+            ViewData["Categories"] = new SelectList(_context.Categories, "Id", "Name");
             if (ModelState.IsValid)
             {
                 _context.Items.Add(item);
@@ -51,6 +53,7 @@ namespace MyApp.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("Id, Name, Price, CategoryId")] Item item)
         {
             if (ModelState.IsValid)
@@ -70,6 +73,7 @@ namespace MyApp.Controllers
         }
 
         [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var item = await _context.Items.FindAsync(id);
