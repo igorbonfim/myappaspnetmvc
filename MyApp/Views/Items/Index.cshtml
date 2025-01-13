@@ -1,6 +1,6 @@
 ﻿@model List<MyApp.Models.Item>
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Items";
 }
 
 <h3>Items list</h3>
@@ -33,7 +33,7 @@
                         @client.Client.Name
                     }
                 </td>
-                <td>
+                <td class="col-md-2">
                     <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-primary">Edit</a>
                     <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger">Delete</a> 
                 </td>
